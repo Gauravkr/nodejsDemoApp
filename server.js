@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser')
 
-const server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-const server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+const server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+const server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
@@ -27,8 +27,6 @@ app.post('/message', (req, res) => {
     res.end(`Your message is received Mr(s) ${name}`);  
 });
 
-app.listen(server_port, server_ip_address, () => console.log(`Example app listening on port ${server_ip_address}:${server_port}`))
-
 function displayForm(res) {
     fs.readFile('index.html', function (err, data) {
         res.writeHead(200, {
@@ -39,3 +37,5 @@ function displayForm(res) {
         res.end();
     });
 }
+
+app.listen(server_port, server_ip_address, () => console.log(`Example app listening on port ${server_ip_address}:${server_port}`))

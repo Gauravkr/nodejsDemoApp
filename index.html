@@ -89,7 +89,7 @@
                const email = $("#email").val();
                const message = $("#message").val();
 
-               $.post("http://localhost:3000/message", 
+               $.post("/message", 
                   { name: name, email: email, message:message }, (data, status) => {
                  if (status === 'success')
                    alert(`message sending success\n${data}`);
