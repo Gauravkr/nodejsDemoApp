@@ -17,14 +17,11 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => displayForm(res));
 
 app.post('/message', (req, res) => {
-    console.log('POST Message/');
-    const body = req.body;
-    const name = body.name;
-  	const email = body.email;
-  	const message = body.message;
-  	console.log(`POST request: Message received from  ${name} and message is "${message}"`);  	
+    console.log('POST Message/');    
+  	const message = req.body.message;
+  	console.log(`POST request: Message received which is "${message}"`);  	
     res.writeHead(200, {'Content-Type': 'text/html'});  
-    res.end(`Your message is received Mr(s) ${name}`);  
+    res.end(`Your message is received, Thanks !!`);  
 });
 
 function displayForm(res) {
